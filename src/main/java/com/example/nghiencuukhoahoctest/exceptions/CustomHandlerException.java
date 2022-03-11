@@ -1,6 +1,7 @@
 package com.example.nghiencuukhoahoctest.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -37,5 +38,16 @@ public class CustomHandlerException {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleBadRequestException(BadRequestException ex, WebRequest webRequest){
         return new ErrorResponse(HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+    }
+
+    @ExceptionHandler(UploadImageException.class)
+    @ResponseStatus(HttpStatus.BAD_GATEWAY)
+    public ErrorResponse handleUploadImageException(BadRequestException ex, WebRequest webRequest) {
+        return new ErrorResponse(HttpStatus.BAD_GATEWAY.value(), ex.getMessage());
+    }
+    @ExceptionHandler(StorageException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse handleNotFoundException(StorageException ex, WebRequest req) {
+        return new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage());
     }
 }

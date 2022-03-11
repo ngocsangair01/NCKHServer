@@ -40,8 +40,8 @@ public class User extends BaseEntity {
     private String phone;
 
     @NotNull
-    @Email(message = "hello")
     @Column(name = "email_user",unique = true)
+    @Email(message = "regex not acp")
     private String email;
 
     @NotNull

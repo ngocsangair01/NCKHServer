@@ -17,12 +17,13 @@ public class TestMailController {
     @Async
     @GetMapping("/send-mail")
     public ResponseEntity<?> sendMail() {
-        sendMailServiceImp.sendMailWithText("Hello","Xin chào, đây là nội dung được spam bởi Sáng đẹp trai","thaianhnguyen136@gmail.com");
+        sendMailServiceImp.sendMailWithText("Hello","Xin chào, đây là nội dung được spam bởi Sáng đẹp trai đến Minh Trym Teo","ngocminhk62@gmail.com");
         return ResponseEntity.status(200).body("send success");
     }
     @GetMapping("/send-mail-att")
     public ResponseEntity<?> sendMailWithAtt(@RequestParam(name = "image", required = false) MultipartFile[] image) {
-        sendMailServiceImp.sendMailWithAtt("Hello","Xin chào ","hellongocsang@gmail.com",image);
+        sendMailServiceImp.sendMailWithAtt("Hello","Xin chào Minh Trym Teo","ngocminhk62@gmail.com",image);
         return ResponseEntity.status(200).body("send success");
     }
+
 }
