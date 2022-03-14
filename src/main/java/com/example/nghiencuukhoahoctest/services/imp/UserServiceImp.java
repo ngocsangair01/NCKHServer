@@ -51,9 +51,9 @@ public class UserServiceImp implements IUserService {
         String code = userDTO.getPreName().concat("-").concat(userDTO.getName()).concat("-").concat(randomCode);
         user.setCode(slugify.slugify(code));
         user.setRole(roleRepository.findById(1).get());
-        user.setAvatar(uploadFile.getUrlFromFile(userDTO.getAvatar()));
-        user.setFrontIdCard(uploadFile.getUrlFromFile(userDTO.getFrontIdCard()));
-        user.setBackIdCard(uploadFile.getUrlFromFile(userDTO.getBackIdCard()));
+//        user.setAvatar(uploadFile.getUrlFromFile(userDTO.getAvatar()));
+//        user.setFrontIdCard(uploadFile.getUrlFromFile(userDTO.getFrontIdCard()));
+//        user.setBackIdCard(uploadFile.getUrlFromFile(userDTO.getBackIdCard()));
         sendMailServiceImp.sendMailWithText("Hello","Đăng kí thành công, mật khẩu của bạn là: "+userDTO.getPassword(),userDTO.getEmail());
         return userRepositories.save(user);
     }

@@ -22,7 +22,7 @@ public class UserController extends BaseController<User> {
     @Autowired
     private SendMailServiceImp sendMailServiceImp;
     @PostMapping()
-    public ResponseEntity<?> createUser(@ModelAttribute @Valid UserDTO userDTO) {
+    public ResponseEntity<?> createUser(@RequestBody @Valid UserDTO userDTO) {
         return this.resSuccess(userService.createUser(userDTO));
     }
 
