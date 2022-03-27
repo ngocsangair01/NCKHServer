@@ -36,6 +36,10 @@ public class UserServiceImp implements IUserService {
     @Autowired
     private Slugify slugify;
     @Override
+    // lấy từ db ra dữ liệu, check xem dữ liệu đã tổn tại chưa: dùng câu lệnh query
+    // nếu dữ liệu đã tồn tại thì bắt phải nhập dữ liệu khác
+    // sau khi check xong thì đưa dữ liệu vào trong db
+
     public User createUser(UserDTO userDTO) {
         User oldUser = userRepositories.findByAccount(userDTO.getAccount());
         if (oldUser != null) {
@@ -49,11 +53,12 @@ public class UserServiceImp implements IUserService {
         ConvertDTOToDAO.fromUserDTOToUser(user,userDTO);
         String randomCode = RandomStringUtils.randomAlphanumeric(10);
         String code = userDTO.getPreName().concat("-").concat(userDTO.getName()).concat("-").concat(randomCode);
+        slugify = slugify.withTransliterator(true);
         user.setCode(slugify.slugify(code));
         user.setRole(roleRepository.findById(1).get());
-//        user.setAvatar(uploadFile.getUrlFromFile(userDTO.getAvatar()));
-//        user.setFrontIdCard(uploadFile.getUrlFromFile(userDTO.getFrontIdCard()));
-//        user.setBackIdCard(uploadFile.getUrlFromFile(userDTO.getBackIdCard()));
+//        user.setAvatar(uploadFile.getUrlFromFile(avt));
+//        user.setFrontIdCard(uploadFile.getUrlFromFile(frontIdCard));
+//        user.setBackIdCard(uploadFile.getUrlFromFile(backIdCard));
         sendMailServiceImp.sendMailWithText("Hello","Đăng kí thành công, mật khẩu của bạn là: "+userDTO.getPassword(),userDTO.getEmail());
         return userRepositories.save(user);
     }

@@ -80,7 +80,6 @@
             <artifactId>cloudinary-http44</artifactId>
             <version>1.29.0</version>
         </dependency>
-
         <dependency>
             <groupId>com.github.slugify</groupId>
             <artifactId>slugify</artifactId>
