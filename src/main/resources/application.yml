@@ -12,7 +12,7 @@ spring:
       matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: jdbc:sqlserver://localhost:1433;databaseName=nghiencuukhoahoctest
+    url: jdbc:sqlserver://localhost:1433;databaseName=testnckh1
     username: sa
     password: 123
   data:
